@@ -1,0 +1,19 @@
+POST http://localhost:8000/new-ticket HTTP/1.1
+content-type: application/json
+
+
+{
+    "choices": [
+        {"label": "Bourrage", "value": "true"},
+        {"label": "Manque de Papier", "value": "true"},
+        {"label": "Autre", "value": "false"}
+    ],
+    "keypairs": [
+        {"label": "SN", "value": "29JSJSAJFAS"},
+        {"label": "code", "value": "IO3853"},
+        {"label": "loca", "value": "RA-N1-O-165"},
+        {"label": "type", "value": "Printer"}
+    ],
+    "comment": "Helloooo"
+}
+

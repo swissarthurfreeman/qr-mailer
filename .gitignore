@@ -1,0 +1,82 @@
+.env
+environment.prod.ts
+toolbar-logo.png
+node_modules
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/web-ui/dist
+/web-ui/tmp
+/web-ui/out-tsc
+/web-ui/bazel-out
+
+# Node
+/web-ui/node_modules
+/web-ui/npm-debug.log
+/web-ui/yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/web-ui/.angular/cache
+/web-ui.sass-cache/
+/web-ui/connect.lock
+/web-ui/coverage
+/web-ui/libpeerconnection.log
+/web-uitestem.log
+/web-ui/typings
+
+# System files
+.DS_Store
+Thumbs.db
+backend/src/main/resources/application.properties
+backend/src/main/resources/application.properties
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/

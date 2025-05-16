@@ -1,0 +1,13 @@
+spring.application.name=
+server.port=
+
+mailer.from.email=
+mailer.to.email=
+mailer.host=
+mailer.port=
+
+mailer.assetUsername=
+mailer.assetPassword=
+mailer.assetURL=
+
+webdriver.edge.driver=
