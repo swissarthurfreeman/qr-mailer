@@ -1,0 +1,22 @@
+<h2>Concerne : {{ equipmentType }}</h2>
+
+@for (keyPairFormGroup of this.ticketFormGroup.controls.keypairs.controls; track $index) {
+    <app-key-pair [keypairFormGroup]="keyPairFormGroup"></app-key-pair>
+}
+
+<h2>Détails du Problème :</h2>
+
+@for (checkboxFormGroup of this.ticketFormGroup.controls.choices.controls; track $index) {
+    <app-problem-detail [checkboxFormGroup]="checkboxFormGroup"></app-problem-detail>
+}
+
+<div [formGroup]="this.ticketFormGroup">
+    <mat-form-field class="example-full-width">
+        <mat-label>Détails Additionels...</mat-label>
+        <textarea formControlName="comment" matInput></textarea>
+    </mat-form-field>    
+</div>
+
+<button mat-stroked-button (click)="submitTicket()">{{'app.hello' | translate}}</button>
+
+<button mat-stroked-button (click)="changeLang()">Change</button>
