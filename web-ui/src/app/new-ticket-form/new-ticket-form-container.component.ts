@@ -87,6 +87,9 @@ export class NewTicketFormContainerComponent implements OnInit {
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("Bourrage", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("Manque de Papier", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("Autre", false));
+
+      } else if(this.equipmentType === undefined && this.parsed['code'] && this.parsed['code'].split("-")[0].length === 3) {
+        this.equipmentType = "Équipement Asset"
       } else {
         throw new Error("Equipment Type not supported.");
       }

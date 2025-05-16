@@ -1,8 +1,0 @@
-<div class="scanner-container">
-    <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
-
-    @if (qrResultString) {
-        <h2>Scan Result:</h2>
-        <p>{{ qrResultString }}</p>
-    }
-</div>
