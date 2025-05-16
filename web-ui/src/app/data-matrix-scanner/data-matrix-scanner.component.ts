@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { BrowserMultiFormatReader } from '@zxing/browser';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-data-matrix-scanner',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './data-matrix-scanner.component.html'
 })
 export class DataMatrixScannerComponent implements AfterViewInit {

@@ -1,5 +1,5 @@
 <div [formGroup]="checkboxFormGroup()!">
     <mat-checkbox formControlName="value">
-        {{ checkboxFormGroup()!.controls.label.value }}
+        {{ checkboxFormGroup()!.controls.label.value | translate }}
     </mat-checkbox>
 </div>

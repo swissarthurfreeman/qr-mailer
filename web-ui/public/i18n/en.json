@@ -1,6 +1,29 @@
 {
-    "app": {
-      "hello": "hello {{value}}",
-      "title": "Translation Demo"
+  "app": {
+    "title": "Report an Incident",
+    "form": {
+      "submit": "Submit",
+      "concerns": "Concerns",
+
+      "keyspairs": {
+        "code": "Code",
+        "loca": "Location",
+        "SN": "Serial Number",
+        "type": "Type"
+      },
+      "checkboxes": {
+        "paper-jam": "Paper Jam",
+        "no-paper": "Out of Paper",
+        "toner": "Toner Issue",
+        "other": "Other"
+      },
+      "description": {
+        "title": "Problem Description",
+        "placeholder": "Additional details..."
+      }
+    },
+    "scanner": {
+      "title": "Please scan the QR code :"
     }
   }
+}

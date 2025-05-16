@@ -1,6 +1,29 @@
 {
-    "app": {
-      "hello": "bonjour {{value}}",
-      "title": "démonstration de traduction"
+  "app": {
+    "title": "Soumettre un Incident",
+    "form": {
+      "submit": "Soumettre",
+      "concerns": "Concerne",
+      "keyspairs": {
+        "code": "Code",
+        "loca": "Localisation",
+        "SN": "Numéro de Série",
+        "type": "Type"
+      },
+      "checkboxes": {
+        "paper-jam": "Bourrage Papier",
+        "no-paper": "Plus de Papier",
+        "toner": "Problème de Toner",
+        "other": "Autre"
+      },
+      "description": {
+        "title": "Description du Problème",
+        "placeholder": "Détails additionnels..."
+      }
+    },
+    "scanner": {
+      "title": "Scannez le QR code du matériel concerné :"
     }
   }
+}
+

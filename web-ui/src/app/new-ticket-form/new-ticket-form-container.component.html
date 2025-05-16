@@ -1,22 +1,22 @@
-<h2>Concerne : {{ equipmentType }}</h2>
+<div>
+    <h2>{{ 'app.form.concerns' | translate }} : {{ equipmentType }}</h2>
 
-@for (keyPairFormGroup of this.ticketFormGroup.controls.keypairs.controls; track $index) {
+    @for (keyPairFormGroup of this.ticketFormGroup.controls.keypairs.controls; track $index) {
     <app-key-pair [keypairFormGroup]="keyPairFormGroup"></app-key-pair>
-}
+    }
 
-<h2>Détails du Problème :</h2>
+    <h2>{{ 'app.form.description.title' | translate }}</h2>
 
-@for (checkboxFormGroup of this.ticketFormGroup.controls.choices.controls; track $index) {
+    @for (checkboxFormGroup of this.ticketFormGroup.controls.choices.controls; track $index) {
     <app-problem-detail [checkboxFormGroup]="checkboxFormGroup"></app-problem-detail>
-}
+    }
 
-<div [formGroup]="this.ticketFormGroup">
-    <mat-form-field class="example-full-width">
-        <mat-label>Détails Additionels...</mat-label>
-        <textarea formControlName="comment" matInput></textarea>
-    </mat-form-field>    
+    <div [formGroup]="this.ticketFormGroup">
+        <mat-form-field style="width: 100%;">
+            <mat-label>{{ 'app.form.description.title' | translate }}</mat-label>
+            <textarea formControlName="comment" matInput rows="6" 
+                [placeholder]="'app.form.description.placeholder' | translate"></textarea>
+        </mat-form-field>
+    </div>
 </div>
-
-<button mat-stroked-button (click)="submitTicket()">{{'app.hello' | translate}}</button>
-
-<button mat-stroked-button (click)="changeLang()">Change</button>
+<button mat-stroked-button (click)="submitTicket()">{{'app.form.submit' | translate}}</button>

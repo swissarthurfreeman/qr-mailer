@@ -8,7 +8,7 @@ import { ProblemDetailComponent } from "./problem-detail/problem-detail.componen
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TicketService } from '../shared/services/ticket.service';
 import { MatInputModule } from '@angular/material/input';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 
@@ -42,7 +42,7 @@ export interface TicketFormGroup {
     ProblemDetailComponent,
     MatInputModule, 
     ReactiveFormsModule,
-    TranslatePipe
+    TranslateModule
   ],
   templateUrl: './new-ticket-form-container.component.html'
 })
@@ -54,11 +54,7 @@ export class NewTicketFormContainerComponent implements OnInit {
 
   ticketFormGroup!: FormGroup<TicketFormGroup>;
 
-  constructor(private translate: TranslateService) {
-    this.translate.addLangs(['fr', 'en']);
-    this.translate.setDefaultLang('fr');
-    this.translate.use('fr');
-  }
+  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.ticketFormGroup = new FormGroup<TicketFormGroup>({
@@ -84,9 +80,10 @@ export class NewTicketFormContainerComponent implements OnInit {
       
       this.equipmentType = this.parsed['type'];
       if(this.equipmentType === 'Printer') {
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("Bourrage", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("Manque de Papier", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("Autre", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.paper-jam", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.no-paper", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.toner", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
 
       } else if(this.equipmentType === undefined && this.parsed['code'] && this.parsed['code'].split("-")[0].length === 3) {
         this.equipmentType = "Équipement Asset"
