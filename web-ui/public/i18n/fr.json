@@ -14,7 +14,11 @@
         "paper-jam": "Bourrage Papier",
         "no-paper": "Plus de Papier",
         "toner": "Problème de Toner",
-        "other": "Autre"
+        "other": "Autre",
+        "email": {
+          "title": "Tenez moi au courant",
+          "placeholder": "Email de contact"
+        }
       },
       "description": {
         "title": "Description du Problème",

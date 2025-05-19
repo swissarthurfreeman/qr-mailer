@@ -14,9 +14,11 @@
     <div [formGroup]="this.ticketFormGroup">
         <mat-form-field style="width: 100%;">
             <mat-label>{{ 'app.form.description.title' | translate }}</mat-label>
-            <textarea formControlName="comment" matInput rows="6" 
+            <textarea formControlName="comment" matInput rows="6"
                 [placeholder]="'app.form.description.placeholder' | translate"></textarea>
         </mat-form-field>
     </div>
+
+    <app-contact-details [contactFormGroup]="ticketFormGroup.controls.contact"></app-contact-details>
 </div>
 <button mat-stroked-button (click)="submitTicket()">{{'app.form.submit' | translate}}</button>

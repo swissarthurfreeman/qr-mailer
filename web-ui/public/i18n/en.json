@@ -4,7 +4,6 @@
     "form": {
       "submit": "Submit",
       "concerns": "Concerns",
-
       "keyspairs": {
         "code": "Code",
         "loca": "Location",
@@ -15,7 +14,11 @@
         "paper-jam": "Paper Jam",
         "no-paper": "Out of Paper",
         "toner": "Toner Issue",
-        "other": "Other"
+        "other": "Other",
+        "email": {
+          "title": "Keep me informed",
+          "placeholder": "Enter your email address"
+        }
       },
       "description": {
         "title": "Problem Description",

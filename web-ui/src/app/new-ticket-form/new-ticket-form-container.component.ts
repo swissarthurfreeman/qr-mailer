@@ -9,6 +9,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular
 import { TicketService } from '../shared/services/ticket.service';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ContactDetailsComponent } from "./contact-details/contact-details.component";
 
 
 
@@ -26,24 +27,31 @@ export interface CheckBoxPair {
   value: FormControl<boolean>;
 }
 
+export interface ContactDetails {
+  email: FormControl<string>;
+  emailChecked: FormControl<boolean>;
+}
+
 // this might become more complex in the future, yeah but YAGNI
 export interface TicketFormGroup {
   keypairs: FormArray<FormGroup<KeyPair>>;
   choices: FormArray<FormGroup<CheckBoxPair>>;
   comment: FormControl<string | null>;
+  contact: FormGroup<ContactDetails>;
 }
 
 
 @Component({
   selector: 'app-new-ticket-form-container',
   imports: [
-    MatButtonModule, 
-    KeyPairComponent, 
+    MatButtonModule,
+    KeyPairComponent,
     ProblemDetailComponent,
-    MatInputModule, 
+    MatInputModule,
     ReactiveFormsModule,
-    TranslateModule
-  ],
+    TranslateModule,
+    ContactDetailsComponent
+],
   templateUrl: './new-ticket-form-container.component.html'
 })
 export class NewTicketFormContainerComponent implements OnInit {
@@ -60,7 +68,11 @@ export class NewTicketFormContainerComponent implements OnInit {
     this.ticketFormGroup = new FormGroup<TicketFormGroup>({
       comment: new FormControl<string>(''),
       keypairs: new FormArray<FormGroup<KeyPair>>([]),
-      choices: new FormArray<FormGroup<CheckBoxPair>>([])
+      choices: new FormArray<FormGroup<CheckBoxPair>>([]),
+      contact: new FormGroup<ContactDetails>({
+        email: new FormControl<string>('', { nonNullable: true }),
+        emailChecked: new FormControl<boolean>(false, { nonNullable: true })
+      })
     });
     this.AddKeyPairs();
   }
