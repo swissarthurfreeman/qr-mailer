@@ -20,7 +20,7 @@
       }
     },
     "scanner": {
-      "title": "Scannez le QR code du matériel concerné :"
+      "title": "Scannez le QR code du matériel :"
     }
   },
   "code": "Code",
