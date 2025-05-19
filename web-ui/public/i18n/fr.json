@@ -4,12 +4,6 @@
     "form": {
       "submit": "Soumettre",
       "concerns": "Concerne",
-      "keyspairs": {
-        "code": "Code",
-        "loca": "Localisation",
-        "SN": "Numéro de Série",
-        "type": "Type"
-      },
       "checkboxes": {
         "paper-jam": "Bourrage Papier",
         "no-paper": "Plus de Papier",
@@ -28,6 +22,22 @@
     "scanner": {
       "title": "Scannez le QR code du matériel concerné :"
     }
+  },
+  "code": "Code",
+  "loca": "Localisation",
+  "SN": "Numéro de Série",
+  "type": "Type",
+  "printer": "Imprimante",
+  "asset": "Équipement Asset",
+  "dialog": {
+    "title": "Service Notifié",
+    "body": {
+      "preface": "Votre ticket sera traité par le service informatique, bio-médical où technique en fonction de l'équipement concerné. Les horaires d'ouverture peuvent varier: si vous êtes en dehors de ceux-cis, les tickets seront traités à l'ouverture. En cas d'urgence, appeler les numéros de piquet.",
+      "it": "Service Informatique : 8:00-17:00, 022 292 92 08",
+      "biomedical": "Service Bio-Médical: 8:00-18:00, 022 424 29 92",
+      "technical": "Service Technique : 8:00-19:00, 022 456 29 84"
+    },
+    "confirm": "J'ai compris"
   }
 }
 

@@ -1,7 +1,8 @@
 
 <div [formGroup]="keypairFormGroup()!" class="p-2">
     <mat-form-field style="width: 100% !important;">
-        <mat-label>{{ keypairFormGroup()!.controls.label.value }}</mat-label>
+        <!-- Keep label values at root in i18n files. Allows flexibility to support unknown values. -->
+        <mat-label>{{ keypairFormGroup()!.controls.label.value | translate }}</mat-label>
         <input matInput formControlName="text">
     </mat-form-field>
 </div>

@@ -1,5 +1,5 @@
 <div>
-    <h2>{{ 'app.form.concerns' | translate }} : {{ equipmentType }}</h2>
+    <h2>{{ 'app.form.concerns' | translate }} : {{ equipmentType | translate }}</h2>
 
     @for (keyPairFormGroup of this.ticketFormGroup.controls.keypairs.controls; track $index) {
     <app-key-pair [keypairFormGroup]="keyPairFormGroup"></app-key-pair>

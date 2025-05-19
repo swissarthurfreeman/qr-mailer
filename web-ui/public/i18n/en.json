@@ -4,12 +4,6 @@
     "form": {
       "submit": "Submit",
       "concerns": "Concerns",
-      "keyspairs": {
-        "code": "Code",
-        "loca": "Location",
-        "SN": "Serial Number",
-        "type": "Type"
-      },
       "checkboxes": {
         "paper-jam": "Paper Jam",
         "no-paper": "Out of Paper",
@@ -28,5 +22,21 @@
     "scanner": {
       "title": "Please scan the QR code :"
     }
+  },
+  "code": "Code",
+  "loca": "Location",
+  "SN": "Serial Number",
+  "type": "Type",
+  "printer": "Printer",
+  "asset": "Asset Equipment",
+  "dialog": {
+    "title": "Service Notified",
+    "body": {
+      "preface": "Your ticket will be dealt with by the IT, bio-medical or technical teams depending on the concerned equipment. Opening hours may vary : if you are outside them, they'll be dealt with at their opening the next business day. In case of emergency, please call the numbers below.",
+      "it": "IT Service : 8:00-17:00, 022 292 92 08",
+      "biomedical": "Bio-Medical Service : 8:00-18:00, 022 424 29 92",
+      "technical": "Technical Service : 8:00-19:00, 022 456 29 84"
+    },
+    "confirm": "I understand"
   }
 }

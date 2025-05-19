@@ -1,8 +1,6 @@
 import { Component, inject, input, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import queryString from 'query-string';
-import { KeyValuePipe } from '@angular/common';
 import { KeyPairComponent } from "./key-pair/key-pair.component";
 import { ProblemDetailComponent } from "./problem-detail/problem-detail.component";
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +8,9 @@ import { TicketService } from '../shared/services/ticket.service';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ContactDetailsComponent } from "./contact-details/contact-details.component";
-
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { error } from 'console';
 
 
 interface Dictionary<T> {
@@ -91,14 +91,14 @@ export class NewTicketFormContainerComponent implements OnInit {
 
       
       this.equipmentType = this.parsed['type'];
-      if(this.equipmentType === 'Printer') {
+      if(this.equipmentType && this.equipmentType.toLowerCase() === 'printer') {
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.paper-jam", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.no-paper", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.toner", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
 
       } else if(this.equipmentType === undefined && this.parsed['code'] && this.parsed['code'].split("-")[0].length === 3) {
-        this.equipmentType = "Équipement Asset"
+        this.equipmentType = "asset"
       } else {
         throw new Error("Equipment Type not supported.");
       }
@@ -119,7 +119,25 @@ export class NewTicketFormContainerComponent implements OnInit {
 
   submitTicket() {
     console.log("Submit ticket")
-    this.ticketService.postTicket(this.ticketFormGroup.getRawValue()).subscribe(value => console.log(value));
+    this.ticketService.postTicket(this.ticketFormGroup.getRawValue()).subscribe(
+      (value) => {
+        this.openConfirmationDialog();
+        console.log(value)
+      },
+      (error) => {
+        this.openConfirmationDialog();
+      }
+    );
+  }
+
+  readonly dialog = inject(MatDialog);
+
+  openConfirmationDialog(): void {
+      const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed, result :', result);
+      });
   }
 
   changeLang() {

@@ -16,8 +16,5 @@ export class ContactDetailsComponent implements OnInit {
 
   contactFormGroup = input<FormGroup<ContactDetails>>();
 
-  ngOnInit(): void {
-    console.log("HEREEEE Input Form Control :", this.contactFormGroup());
-    console.log("Contact details");
-  }
+  ngOnInit(): void {}
 }

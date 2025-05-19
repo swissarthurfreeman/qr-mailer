@@ -1,18 +1,15 @@
-<h2>Contact details works</h2>
 <div [formGroup]="this.contactFormGroup()!">
     <mat-checkbox formControlName="emailChecked">
         {{ 'app.form.checkboxes.email.title' | translate }}
     </mat-checkbox>
-    @if (this.contactFormGroup()?.controls?.emailChecked?.value) {
-        <mat-form-field style="width: 100% !important;">
-            <mat-label>{{ 'app.form.checkboxes.email.placeholder' | translate }}</mat-label>
-            <input matInput formControlName="email">
-        </mat-form-field>
-    }
 </div>
-<!--
 
--->
+@if (this.contactFormGroup()?.controls?.emailChecked?.value) {
+<div [formGroup]="this.contactFormGroup()!">
+    <mat-form-field style="width: 100% !important;">
+        <mat-label>{{ 'app.form.checkboxes.email.placeholder' | translate }}</mat-label>
+        <input matInput formControlName="email">
+    </mat-form-field>
 
-
-
+</div>
+}

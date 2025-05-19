@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{ 'dialog.title' | translate }}</h2>
+<mat-dialog-content>
+  <p>{{ 'dialog.body.preface' | translate }}</p>
+  <ul>
+    <li>{{ 'dialog.body.it' | translate }}</li>
+    <li>{{ 'dialog.body.biomedical' | translate }}</li>
+    <li>{{ 'dialog.body.technical' | translate }}</li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onConfirmClick()">{{ 'dialog.confirm' | translate }}</button>
+</mat-dialog-actions>
