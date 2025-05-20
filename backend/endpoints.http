@@ -1,19 +1,22 @@
+###
 POST http://localhost:8000/new-ticket HTTP/1.1
 content-type: application/json
 
-
+# TODO : keypairs and choices should be a single map, not a list of maps.
+# same with choices.
 {
-    "choices": [
-        {"label": "Bourrage", "value": "true"},
-        {"label": "Manque de Papier", "value": "true"},
-        {"label": "Autre", "value": "false"}
-    ],
-    "keypairs": [
-        {"label": "SN", "value": "29JSJSAJFAS"},
-        {"label": "code", "value": "IO3853"},
-        {"label": "loca", "value": "RA-N1-O-165"},
-        {"label": "type", "value": "Printer"}
-    ],
-    "comment": "Helloooo"
+    "comment":"asassa",
+    "formFields": {
+        "loca": "RA-N1-O-165",
+        "type": "printer"
+    },
+    "formCheckBoxes": {
+        "app.form.checkboxes.paper-jam": false,
+        "app.form.checkboxes.no-paper": true,
+        "app.form.checkboxes.toner": true,
+        "app.form.checkboxes.other": false
+    },
+    "contactEmail": "blablabla",
+    "type": "SPACESHIP"
 }
 
