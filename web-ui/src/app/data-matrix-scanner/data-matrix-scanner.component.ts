@@ -25,25 +25,12 @@ export class DataMatrixScannerComponent implements AfterViewInit {
           this.handleQueryString(this.result);
         else if (this.isAssetCode(this.result))
           this.handleAssetCode(this.result);
-        /*
-        else
-          console.log('Unhandled data :', this.result);
-      } else if (err) {
-        console.log('Error :', err);
-        throw err;*/
-
       }
-      /*
-      if (res) {
-        this.result = res.getText();
-        console.log('Decoded text:', this.result);
-      }*/
     });
-    
   }
 
   handleAssetCode(code: string) {
-    this.router.navigate(['new-ticket', `?code=${code}`]).then(() => {
+    this.router.navigate(['new-ticket', `?code=${code}&type=asset`]).then(() => {
       console.log("Navigated...");
     });
   }

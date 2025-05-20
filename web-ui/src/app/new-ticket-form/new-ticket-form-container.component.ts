@@ -11,6 +11,8 @@ import { ContactDetailsComponent } from "./contact-details/contact-details.compo
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { error } from 'console';
+import { Ticket } from '../shared/model/Ticket.model';
+import { TicketType } from '../shared/model/TicketType.enum';
 
 
 interface Dictionary<T> {
@@ -58,7 +60,7 @@ export class NewTicketFormContainerComponent implements OnInit {
 
   t = input<string>();
   parsed: Dictionary<string> = {};
-  equipmentType: string = '';
+  equipmentType!: TicketType;
 
   ticketFormGroup!: FormGroup<TicketFormGroup>;
 
@@ -89,24 +91,27 @@ export class NewTicketFormContainerComponent implements OnInit {
         }));
       }
 
-
-      this.equipmentType = this.parsed['type'];
-      if (this.equipmentType && this.equipmentType.toLowerCase() === 'printer') {
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.paper-jam", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.no-paper", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.toner", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
-      } else if (this.equipmentType && this.equipmentType.toLowerCase() === 'meeting-room') {
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.sound", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.image", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.conference", false));
-        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
-      } else if (this.equipmentType === undefined && this.parsed['code'] && this.parsed['code'].split("-")[0].length === 3) {
-        this.equipmentType = "asset"
-      } else {
-        throw new Error("Equipment Type not supported.");
+      this.equipmentType = this.parsed['type'].toUpperCase() as TicketType;
+      console.log(this.equipmentType);
+      switch (this.equipmentType) {
+        case TicketType.PRINTER:
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.paper-jam", false));
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.no-paper", false));
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.toner", false));
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
+          break;
+        case TicketType.MEETING_ROOM:
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.sound", false));
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.image", false));
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.conference", false));
+          this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
+          break;
+        case TicketType.ASSET:
+          // add custom checkboxes for asset, for now none required.
+          break;
+        default:
+          throw new Error("Equipment Type not supported.");
       }
-
     } else {
       throw new Error("Not implemented yet when no querystring.")
     }
@@ -122,16 +127,40 @@ export class NewTicketFormContainerComponent implements OnInit {
   ticketService = inject(TicketService);
 
   submitTicket() {
-    console.log("Submit ticket")
-    this.ticketService.postTicket(this.ticketFormGroup.getRawValue()).subscribe(
-      (value) => {
-        this.openConfirmationDialog();
-        console.log(value)
-      },
-      (error) => {
-        this.openConfirmationDialog();
-      }
-    );
+    console.log("Submit ticket");
+    console.log(this.formToTicket(this.ticketFormGroup));
+
+    this.ticketService.postTicket(this.formToTicket(this.ticketFormGroup))
+      .subscribe({
+        complete: () => {
+          this.openConfirmationDialog();
+        },
+        error: (err) => {
+          this.openConfirmationDialog();
+          console.error("Error while submitting ticket", err);
+        },
+      });
+  }
+
+  formToTicket(form: FormGroup<TicketFormGroup>): Ticket {
+    const ticket = new Ticket();
+
+    ticket.formFields = {};
+
+    form.controls.keypairs.controls.forEach((keypair) => {
+      ticket.formFields[keypair.controls.label.value] = keypair.controls.text.value;
+    });
+
+    ticket.formCheckBoxes = {};
+    form.controls.choices.controls.forEach((checkbox) => {
+      ticket.formCheckBoxes[checkbox.controls.label.value] = checkbox.controls.value.value;
+    });
+
+
+    ticket.contactEmail = form.controls.contact.controls.email.value;
+    ticket.type = this.equipmentType;
+    ticket.comment = form.controls.comment.value!;
+    return ticket;
   }
 
   readonly dialog = inject(MatDialog);
