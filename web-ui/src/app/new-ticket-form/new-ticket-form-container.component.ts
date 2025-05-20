@@ -51,7 +51,7 @@ export interface TicketFormGroup {
     ReactiveFormsModule,
     TranslateModule,
     ContactDetailsComponent
-],
+  ],
   templateUrl: './new-ticket-form-container.component.html'
 })
 export class NewTicketFormContainerComponent implements OnInit {
@@ -62,7 +62,7 @@ export class NewTicketFormContainerComponent implements OnInit {
 
   ticketFormGroup!: FormGroup<TicketFormGroup>;
 
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.ticketFormGroup = new FormGroup<TicketFormGroup>({
@@ -89,15 +89,19 @@ export class NewTicketFormContainerComponent implements OnInit {
         }));
       }
 
-      
+
       this.equipmentType = this.parsed['type'];
-      if(this.equipmentType && this.equipmentType.toLowerCase() === 'printer') {
+      if (this.equipmentType && this.equipmentType.toLowerCase() === 'printer') {
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.paper-jam", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.no-paper", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.toner", false));
         this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
-
-      } else if(this.equipmentType === undefined && this.parsed['code'] && this.parsed['code'].split("-")[0].length === 3) {
+      } else if (this.equipmentType && this.equipmentType.toLowerCase() === 'meeting-room') {
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.sound", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.image", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.conference", false));
+        this.ticketFormGroup.controls.choices.push(this.buildCheckBoxPair("app.form.checkboxes.other", false));
+      } else if (this.equipmentType === undefined && this.parsed['code'] && this.parsed['code'].split("-")[0].length === 3) {
         this.equipmentType = "asset"
       } else {
         throw new Error("Equipment Type not supported.");
@@ -133,11 +137,11 @@ export class NewTicketFormContainerComponent implements OnInit {
   readonly dialog = inject(MatDialog);
 
   openConfirmationDialog(): void {
-      const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
-      dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed, result :', result);
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed, result :', result);
+    });
   }
 
   changeLang() {

@@ -9,6 +9,9 @@
         "no-paper": "Plus de Papier",
         "toner": "Problème de Toner",
         "other": "Autre",
+        "sound": "Son",
+        "image": "Image",
+        "conference": "Visio-Conférence",
         "email": {
           "title": "Tenez moi au courant",
           "placeholder": "Email de contact"
@@ -28,6 +31,7 @@
   "SN": "Numéro de Série",
   "type": "Type",
   "printer": "Imprimante",
+  "meeting-room": "Salle de Réunion",
   "asset": "Équipement Asset",
   "dialog": {
     "title": "Service Notifié",

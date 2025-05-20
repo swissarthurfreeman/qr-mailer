@@ -9,6 +9,9 @@
         "no-paper": "Out of Paper",
         "toner": "Toner Issue",
         "other": "Other",
+        "sound": "Sound",
+        "image": "Image",
+        "conference": "Conference",
         "email": {
           "title": "Keep me informed",
           "placeholder": "Enter your email address"
@@ -28,6 +31,7 @@
   "SN": "Serial Number",
   "type": "Type",
   "printer": "Printer",
+  "meeting-room": "Meeting Room",
   "asset": "Asset Equipment",
   "dialog": {
     "title": "Service Notified",
