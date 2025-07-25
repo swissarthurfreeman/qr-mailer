@@ -13,6 +13,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { error } from 'console';
 import { Ticket } from '../shared/model/Ticket.model';
 import { TicketType } from '../shared/model/TicketType.enum';
+import { ActivatedRoute } from '@angular/router';
 
 
 interface Dictionary<T> {
@@ -57,14 +58,11 @@ export interface TicketFormGroup {
   templateUrl: './new-ticket-form-container.component.html'
 })
 export class NewTicketFormContainerComponent implements OnInit {
-
-  t = input<string>();
-  parsed: Dictionary<string> = {};
   equipmentType!: TicketType;
 
   ticketFormGroup!: FormGroup<TicketFormGroup>;
-
-  constructor(private translate: TranslateService) { }
+  
+  constructor(private translate: TranslateService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.ticketFormGroup = new FormGroup<TicketFormGroup>({
@@ -80,18 +78,17 @@ export class NewTicketFormContainerComponent implements OnInit {
   }
 
   AddKeyPairs() {
-    if (this.t()) {
-      this.parsed = queryString.parse(this.t() as string) as Dictionary<string>;
-      console.log(this.parsed);
+    this.route.queryParams.subscribe(parsed => {
+      console.log(parsed);
 
-      for (let key in this.parsed) {
+      for (let key in parsed) {
         this.ticketFormGroup.controls.keypairs.push(new FormGroup<KeyPair>({
           label: new FormControl(key, { nonNullable: true }),
-          text: new FormControl(this.parsed[key], { nonNullable: true })
+          text: new FormControl(parsed[key], { nonNullable: true })
         }));
       }
 
-      this.equipmentType = this.parsed['type'].toUpperCase() as TicketType;
+      this.equipmentType = parsed['type'].toUpperCase() as TicketType;
       console.log(this.equipmentType);
       switch (this.equipmentType) {
         case TicketType.PRINTER:
@@ -112,9 +109,7 @@ export class NewTicketFormContainerComponent implements OnInit {
         default:
           throw new Error("Equipment Type not supported.");
       }
-    } else {
-      throw new Error("Not implemented yet when no querystring.")
-    }
+    });
   }
 
   buildCheckBoxPair(label: string, value: boolean) {

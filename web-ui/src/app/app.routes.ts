@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
-        path: 'new-ticket/:t',
+        path: 'new-ticket',
         loadComponent: () => import('./new-ticket-form/new-ticket-form-container.component').then(m => m.NewTicketFormContainerComponent)
     },
     {
